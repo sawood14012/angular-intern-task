@@ -1,0 +1,77 @@
+<section>
+  <nav class="flex p-6">
+    <span class="material-icons">keyboard_backspace</span>
+    <p>Login/Sign up</p>
+  </nav>
+  <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row">
+    <li
+      class="-mb-px mr-2 last:mr-0 flex-grow flex justify-center"
+      (click)="toggleTabs(1)"
+      [ngClass]="{
+        'text-black bg-white': openTab !== 1,
+        'text-yellow-600 border-yellow-600 border-b-2': openTab === 1
+      }"
+    >
+      <a class="text-xs font-bold uppercase px-5 py-3 block leading-normal">
+        <i class="fas fa-space-shuttle text-base mr-1"></i>LOGIN
+      </a>
+    </li>
+    <li
+      class="-mb-px mr-2 last:mr-0 flex-grow flex justify-center"
+      (click)="toggleTabs(2)"
+      [ngClass]="{
+        'text-black bg-white': openTab !== 2,
+        'text-yellow-600 border-yellow-600 border-b-2': openTab === 2
+      }"
+    >
+      <a class="text-xs font-bold uppercase px-5 py-3 block leading-normal">
+        <i class="fas fa-cog text-base mr-1"></i>SIGN UP
+      </a>
+    </li>
+  </ul>
+  <div *ngIf="openTab == 1">
+    <input
+      type="text"
+      name="email"
+      id="email"
+      placeholder="Phone Number or Email"
+      class="w-full border-0 border-b-2 border-gray-300 my-3"
+    />
+    <div class="flex w-full items-stretch my-3 border-b-2 border-gray-300">
+      <input
+        [type]="showPassword ? text : password"
+        placeholder="Password"
+        class="w-full border-none px-2"
+      />
+      <button
+        class="z-10 h-full text-center text-gray-400"
+        (click)="showPassword = !showPassword"
+      >
+        <span class="material-icons">visibility</span>
+      </button>
+    </div>
+    <p class="flex justify-end text-blue-500 my-5">Forgot Password?</p>
+    <button class="w-full bg-yellow-600 py-2 px-4 text-white my-3">
+      LOGIN
+    </button>
+    <div class="flex text-center items-center mt-6">
+      <div class="flex-grow h-px bg-gray-400 mr-2"></div>
+      <p class="text-gray-400">Or</p>
+      <div class="flex-grow h-px bg-gray-400 ml-2"></div>
+    </div>
+    <button
+      class="w-full border-2 border-yellow-600 text-yellow-600 py-2 px-4 my-1"
+    >
+      Login with SMS
+    </button>
+    <div class="flex flex-row flex-wrap my-1">
+      <button class="w-1/2 h-9 px-2">
+        <img class="w-full h-9" src="assets/facebook.png" />
+      </button>
+      <button class="w-1/2 h-9 px-2">
+        <img class="w-full h-9" src="assets/google.png" />
+      </button>
+    </div>
+  </div>
+  <div *ngIf="openTab == 2"></div>
+</section>
