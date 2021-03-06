@@ -32,26 +32,29 @@
   <div *ngIf="openTab == 1">
     <input
       type="text"
+      [(ngModel)]="userEmail"
       name="email"
       id="email"
+      [formControl]="email"
       placeholder="Phone Number or Email"
       class="w-full border-0 border-b-2 border-gray-300 my-3"
     />
     <div class="flex w-full items-stretch my-3 border-b-2 border-gray-300">
       <input
-        [type]="showPassword ? text : password"
+        [type]="hide? 'password' : 'text'"
         placeholder="Password"
+        [(ngModel)]="userPassword"
         class="w-full border-none px-2"
       />
       <button
         class="z-10 h-full text-center text-gray-400"
-        (click)="showPassword = !showPassword"
+        (click)="hide = !hide"
       >
         <span class="material-icons">visibility</span>
       </button>
     </div>
-    <p class="flex justify-end text-blue-500 my-5">Forgot Password?</p>
-    <button class="w-full bg-yellow-600 py-2 px-4 text-white my-3">
+    <p class="flex justify-end text-blue-500 my-5" (click)="logout()">Forgot Password?</p>
+    <button class="w-full bg-yellow-600 py-2 px-4 text-white my-3" (click)="tryLogin()">
       LOGIN
     </button>
     <div class="flex text-center items-center mt-6">
@@ -65,10 +68,10 @@
       Login with SMS
     </button>
     <div class="flex flex-row flex-wrap my-1">
-      <button class="w-1/2 h-9 px-2">
+      <button class="w-1/2 h-9 px-2" (click)="loginWithFacebook()">
         <img class="w-full h-9" src="assets/facebook.png" />
       </button>
-      <button class="w-1/2 h-9 px-2">
+      <button class="w-1/2 h-9 px-2" (click)="signInWithGoogle()">
         <img class="w-full h-9" src="assets/google.png" />
       </button>
     </div>

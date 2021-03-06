@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "go-ready-blockchain": {
+      "hosting": {
+        "intern": [
+          "go-ready-blockchain"
+        ]
+      }
+    }
+  }
+}

@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/angular-instantsearch/bundles/instantsearch.min.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -120,6 +121,10 @@
               "devServerTarget": "intern:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

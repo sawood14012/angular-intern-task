@@ -15,5 +15,7 @@
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false
-  }
+  },
+  "esModuleInterop": true,
+  "allowSyntheticDefaultImports": true
 }
