@@ -1,1 +1,52 @@
-<p>shop works!</p>
+<section>
+  <nav class="bg-blue-700 p-4">
+    <input
+      name="search"
+      id="search"
+      placeholder="Search for products, brands and more"
+      class="w-full p-3 rounded-sm"
+    />
+  </nav>
+  <ul class="flex mb-0 list-none flex-wrap pt-1 flex-row shadow-lg">
+    <li
+      class="-mb-px last:mr-0 flex-grow flex justify-center items-center border-r-2 border-b-2 border-gray-300"
+    >
+      <a class="text-xs font-bold px-5 py-3 leading-normal flex items-center"
+        ><span class="material-icons"> sort </span>Sort
+      </a>
+    </li>
+    <li
+      class="-mb-px last:mr-0 flex-grow flex justify-center items-center border-b-2 border-gray-300"
+    >
+      <a class="text-xs font-bold px-5 py-3 leading-normal flex items-center"
+        ><span class="material-icons"> filter_list </span>Filter
+      </a>
+    </li>
+  </ul>
+  <div class="flex flex-row flex-wrap">
+    <div *ngFor="let item of data" class="p-2 w-1/2 box-border">
+      <div class="rounded-sm shadow-lg">
+        <div class="relative w-full">
+          <img [src]="item.image" [alt]="item.title" />
+          <div
+            class="absolute left-auto top-4 right-4 rounded-full bg-white border-gray-300 border-2 w-8 h-8 flex justify-center items-center"
+          >
+            <span class="material-icons"> favorite </span>
+          </div>
+          <div
+            class="absolute bottom-0 left-0 right-0 flex justify-center flex-col items-center"
+          >
+            <span class="px-1 bg-green-700 text-white"> Condition </span>
+            <span class="px-1 bg-green-50"> Brand Refurbrished - Superb </span>
+          </div>
+        </div>
+        <div class="p-2">
+          <h6 class="text-sm">{{ item.title }}</h6>
+        </div>
+        <div class="p-2">
+          <p class="text-sm font-bold">Rs{{ item.price }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
