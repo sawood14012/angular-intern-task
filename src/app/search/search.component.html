@@ -1,0 +1,9 @@
+<input
+  type="text"
+  #input
+  (ngModel)="search"
+  (keyup)="onChangeDebounced(input.value)"
+  [value]="this.state.query"
+  placeholder="Search for products, brands and more"
+  class="w-full p-3 rounded-sm"
+/>

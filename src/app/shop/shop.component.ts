@@ -1,12 +1,13 @@
 import { Component, OnInit, Query } from '@angular/core';
-import {DataService} from '../data.service';
+import {DataService, SomeSharedService} from '../data.service';
 import { Router } from '@angular/router';
 import  * as algoliasearch  from 'algoliasearch/lite';
+import {SharedService} from '../shared.service';
 
 
 const searchClient = algoliasearch(
   '9CQGAYW5CN',
-  '12aa30e9c2002e51a5e1debc58876659'
+  '${process.env.ALGOLIA_SEARCH_KEY}'
 );
 
 @Component({
@@ -18,29 +19,36 @@ const searchClient = algoliasearch(
 
 export class ShopComponent implements OnInit {
 
+  
+
   config = {
     indexName: "FAKE_FLIPCART",
     searchClient,
     searchFunction(helper: any) {
-      console.log(helper.state.query);
-      if(helper.state.query == ""){
-        console.log("empty");
-      }
       helper.search();
     }
   };
+  public flag: boolean;
   search: Boolean
   Products: object 
   newItems : object
 
-  constructor(private dataService: DataService, private router: Router) {
+  receiveMessage($event) {
+    this.search = $event
+    console.log($event)
+  }
+  constructor(private service: SharedService,private someSharedService: SomeSharedService, private dataService: DataService, private router: Router) {
 
    }
 
   ngOnInit() {
+    this.service.getValue().subscribe((value) => {
+      this.flag = value;
+    });
+    console.log(this.someSharedService.get());
     this.dataService.getProducts().subscribe((res)=>{
       this.Products = res;
-      console.log(this.Products);
+    
     })
   }
 
@@ -57,15 +65,13 @@ export class ShopComponent implements OnInit {
     return newItems;
   }
 
-  searchEmpty(query: any) : Boolean {
-    console.log(query);
-    if (query === ''){
-      this.search = false;
-      return true;
+
+  searchEmpty() : Boolean {
+    if (this.someSharedService.get() === ''){
+      return true
     }
     else{
-      this.search = true;
-      return false;
+      return false
     }
   }
   

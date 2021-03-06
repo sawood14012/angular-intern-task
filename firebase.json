@@ -1,7 +1,7 @@
 {
   "hosting": [
     {
-      "target": "intern",
+      "site": "ameen-intern-task",
       "public": "dist/intern",
       "ignore": [
         "**/.*"

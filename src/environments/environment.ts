@@ -5,11 +5,11 @@
 export const environment = {
   production: false,
   firebaseConfig : {
-    apiKey: "AIzaSyDBCY--eLNm9UIPkc2YKzZmaQGQ2Hbe2AI",
-    authDomain: "go-ready-blockchain.firebaseapp.com",
-    databaseURL: "https://go-ready-blockchain.firebaseio.com",
+    apiKey: '${process.env.FIREBASE_API_KEY}', 
+    authDomain: '${process.env.FIREBASE_AUTH_DOMAIN}', 
+    databaseURL: '${process.env.FIREBASE_DB_URL}', 
     projectId: "go-ready-blockchain",
-    storageBucket: "go-ready-blockchain.appspot.com",
+    storageBucket: '${process.env.FIREBASE_STORAGE_BUCKET}',
     messagingSenderId: "567732165027",
     appId: "1:567732165027:web:c1653a86f84b3f047d2216"
   }

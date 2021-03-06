@@ -11,14 +11,16 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AuthService } from './auth.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgAisModule } from 'angular-instantsearch';
-
+import {SomeSharedService} from './data.service';
 import { environment } from '../environments/environment';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     ShopComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,7 @@ import { environment } from '../environments/environment';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService, SomeSharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
