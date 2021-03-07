@@ -6,6 +6,13 @@ name: Node.js CI
 on:
   push:
     branches: [ master ]
+
+env:
+    FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
+    FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
+    FIREBASE_DB_URL: ${{ secrets.FIREBASE_DB_URL }}
+    FIREBASE_STORAGE_BUCKET: ${{secrets.FIREBASE_STORAGE_BUCKET }}
+    ALGOLIA_SEARCH_KEY: ${{ secrets.ALGOLIA_SEARCH_KEY }}
     
 jobs:
   build:
@@ -16,14 +23,16 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 14.x
-    - run: npm ci
-    - run: npm run build --if-present
-      env:
-          FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
-          FIREBASE_AUTH_DOMAIN: ${{ secrets.FIREBASE_AUTH_DOMAIN }}
-          FIREBASE_DB_URL: ${{ secrets.FIREBASE_DB_URL }}
-          FIREBASE_STORAGE_BUCKET: ${{secrets.FIREBASE_STORAGE_BUCKET }}
-          ALGOLIA_SEARCH_KEY: ${{ secrets.ALGOLIA_SEARCH_KEY }}
+    - run: npm install 
+    - name: Build production
+      run: |
+        export FIREBASE_API_KEY=${FIREBASE_API_KEY};
+        export FIREBASE_AUTH_DOMAIN=${FIREBASE_AUTH_DOMAIN};
+        export FIREBASE_DB_URL=${FIREBASE_DB_URL};
+        export FIREBASE_STORAGE_BUCKET=${FIREBASE_STORAGE_BUCKET};
+        export ALGOLIA_SEARCH_KEY=${ALGOLIA_SEARCH_KEY};
+        
+        npm run build
     - uses: w9jds/firebase-action@master
       with:
           args: deploy --only hosting:ameen-intern-task --project go-ready-blockchain
