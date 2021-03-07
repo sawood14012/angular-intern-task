@@ -32,7 +32,7 @@ jobs:
         export FIREBASE_STORAGE_BUCKET=${FIREBASE_STORAGE_BUCKET};
         export ALGOLIA_SEARCH_KEY=${ALGOLIA_SEARCH_KEY};
         
-        npm run build
+        npm run build:prod
     - uses: w9jds/firebase-action@master
       with:
           args: deploy --only hosting:ameen-intern-task --project go-ready-blockchain

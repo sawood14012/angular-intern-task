@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -7,6 +9,8 @@ export class DataService {
 
   search = false
   API_URL = 'https://products-ameen.herokuapp.com'
+
+  ALGOLIA = environment.algolia;
   
   constructor(private http: HttpClient) {   
   }

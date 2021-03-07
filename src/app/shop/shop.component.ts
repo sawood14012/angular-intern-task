@@ -3,11 +3,12 @@ import {DataService, SomeSharedService} from '../data.service';
 import { Router } from '@angular/router';
 import  * as algoliasearch  from 'algoliasearch/lite';
 import {SharedService} from '../shared.service';
+import {environment} from '../../environments/environment';
 
 
 const searchClient = algoliasearch(
   '9CQGAYW5CN',
-  '${process.env.ALGOLIA_SEARCH_KEY}'
+   environment.algolia
 );
 
 @Component({
